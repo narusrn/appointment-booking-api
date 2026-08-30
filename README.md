@@ -24,6 +24,16 @@ cp .env.example .env                 # then edit SECRET_KEY
 uvicorn api.main:app --reload
 ```
 
+## Tests
+
+```bash
+pytest
+```
+
+`tests/test_api.py` uses FastAPI's `TestClient` against the in-memory store
+(cleared between tests) and covers login, auth on protected routes, `owner`
+binding, admin-vs-user list scoping, and 403/404 ownership rules.
+
 - API base: `http://127.0.0.1:8000`
 - Swagger UI: `http://127.0.0.1:8000/docs` (use the **Authorize** button)
 
@@ -79,4 +89,3 @@ curl -s http://127.0.0.1:8000/api/v1/bookings -H "Authorization: Bearer $TOKEN"
 ## Not included
 
 - Frontend (optional in the brief).
-- Automated test suite — flows were verified manually via `curl` / Swagger.
