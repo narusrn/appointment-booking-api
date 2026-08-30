@@ -15,7 +15,11 @@ load_dotenv()  # populate os.environ from .env before any route reads it
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="BBL Autorized API", version="1.0.0")
+app = FastAPI(
+    title="Appointment Booking API",
+    description="Log in and book time slots. Admins see all bookings; other users see only their own.",
+    version="1.0.0",
+)
 app.state.start_time = datetime.now()
 
 app.include_router(authentication.router)
